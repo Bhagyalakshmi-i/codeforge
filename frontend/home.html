@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CodeForge</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@400,500,700,800,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="home.css" />
+</head>
+<body>
+  <header class="navbar">
+    <a href="home.html" class="brand">
+      <div class="brand-mark">⬢</div>
+      <div class="brand-name">codeforge</div>
+    </a>
+
+    <nav class="nav">
+      <a href="browse.html">Browse</a>
+      
+    </nav>
+
+    <div class="nav-right">
+      <a href="index.html" class="signin-link">Sign in</a>
+      <button class="btn-pill btn-white" id="getStartedBtn" onclick="window.location.href='getstarted.html'">Get started</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-left">
+        <p class="eyebrow">✨ A PREMIUM ARCHIVE FOR SOLVED PROBLEMS</p>
+
+        <h1 class="hero-title">
+          Where great <span class="dim-italic">solutions</span><br>
+          find their <span class="accent">alternates.</span>
+        </h1>
+
+        <p class="hero-desc">
+          Upload solved programming problems with code, explanations & references.
+          Let the community review your approach and post sharper alternatives.
+          AI gives you complexity & edge-case feedback in seconds.
+        </p>
+
+        <div class="hero-actions">
+          <button class="btn-pill btn-white" id="exploreBtn" onclick="window.location.href='browse.html'">Explore problems →</button>
+          <button class="btn-pill btn-dark" id="submitBtn" onclick="window.location.href='submit.html'">&lt;/&gt; Submit a solution</button>
+        </div>
+
+        <div class="stats">
+          <div class="stat">
+            <div class="stat-num">0</div>
+            <div class="stat-label">PROBLEMS</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">0</div>
+            <div class="stat-label">ALT. SOLUTIONS</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">1</div>
+            <div class="stat-label">BUILDERS</div>
+          </div>
+        </div>
+      </div>
+
+      
+    </section>
+
+    <section class="divider-space"></section>
+
+    <section class="feature-grid" id="browse">
+      <article class="feature-card large">
+        <div class="feature-icon">&lt;/&gt;</div>
+        <h3>Rich code editor</h3>
+        <p>
+          Monaco-grade syntax highlighting for Python, JS, C++ and Java.
+          Paste solutions, attach images and even YouTube walkthroughs.
+        </p>
+
+        <div class="code-panel">
+          <div class="code-top"># two_sum.py</div>
+          <pre><code><span class="purple">def</span> <span class="accent">two_sum</span>(nums, target):
+    seen = {}
+    <span class="purple">for </span>i, n in enumerate(nums):
+    <span class="purple"> if </span>target - n in seen:
+    <span class="purple">  return </span>[seen[target - n], i]
+        seen[n] = i</code></pre>
+        </div>
+      </article>
+
+      <article class="feature-card highlighted">
+        <div class="feature-icon gold">✦</div>
+        <h3>AI code review</h3>
+        <p>
+          Get complexity analysis, edge-case warnings and an alternative approach
+          in under 5 seconds.
+        </p>
+
+        <div class="mini-review">
+          <p class="mini-title">## Time complexity</p>
+          <p>O(n) — single pass with hashmap.</p>
+          <p class="mini-title">## Alternative</p>
+          <p>Sort + two-pointer is O(n log n) but uses O(1) extra space.</p>
+        </div>
+      </article>
+
+      <article class="feature-card">
+        <div class="feature-icon">⎇</div>
+        <h3>Alternative solutions</h3>
+        <p>Other developers post their take. Better, shorter, more elegant — get every angle.</p>
+      </article>
+
+      <article class="feature-card">
+        <div class="feature-icon">🏆</div>
+        <h3>Popular highlighted</h3>
+        <p>Top-voted solutions surface to the top with the gold badge. Karma rewards clarity.</p>
+      </article>
+
+      <article class="feature-card">
+        <div class="feature-icon">▤</div>
+        <h3>Categorised feed</h3>
+        <p>Filter by topic and difficulty. From easy hash-map warmups to brutal DP nightmares.</p>
+      </article>
+    </section>
+
+    <section class="ticker-wrap">
+      <div class="ticker-track" id="tickerTrack">
+        <span>Trees</span>
+        <span>Strings</span>
+        <span>Hash Map</span>
+        <span>Two Pointers</span>
+        <span>Sliding Window</span>
+        <span>Backtracking</span>
+        <span>Greedy</span>
+        <span>Bit Manipulation</span>
+        <span>Sorting</span>
+        <span>Stack</span>
+        <span>Queue</span>
+        <span>Recursion</span>
+        <span>Arrays</span>
+        <span>Dynamic Programming</span>
+        <span>Graphs</span>
+      </div>
+    </section>
+
+    <section class="section-two">
+      <div class="section-two-left">
+        <p class="eyebrow small">// BUILT FOR SERIOUS PROBLEM SOLVERS</p>
+        <h2 class="section-title">
+            <h5 class="hero-title">
+                Stop writing solutions <br>
+                into the world.
+              </h5>
+      
+              <p class="hero-desc">
+                push your best work into a community that actually reads code,votes for clarity and offers something better.
+              </p>
+      
+              <div class="hero-actions">
+                <button class="btn-pill btn-white" id="exploreBtn" onclick="window.location.href='getstarted.html'">Create your account →</button>
+                <button class="btn-pill btn-dark" id="submitBtn" onclick="window.location.href='browse.html'">Browse Problems</button>
+              </div>
+          
+          
+        </h2>
+      </div>
+
+      <div class="section-two-right">
+        <article class="promo-card">
+          <div class="promo-badge">⚡ BUILT BY DEVELOPERS</div>
+          <h3>A thoughtful archive of how problems get solved — not just whether they do.</h3>
+        </article>
+      </div>
+    </section>
+
+    <footer class="footer" id="submit">
+      <p>codeforge — all rights reserved</p>
+    </footer>
+  </main>
+
+  <script src="home.js"></script>
+</body>
+</html>

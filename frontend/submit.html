@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+
+  <!-- SAME FONTS -->
+  <link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@400,500,700,800,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="submit.css">
+
+  <title>Submit Solution</title>
+</head>
+<body>
+
+<header class="navbar">
+  <a href="index.html" class="brand">
+    <div class="brand-mark">⬢</div>
+    <div class="brand-name">codeforge</div>
+  </a>
+
+  <nav class="nav">
+    <a href="browse.html">Browse</a>
+    <a href="submit.html">Submit Solution</a>
+  </nav>
+
+  <div class="nav-right">
+    <span id="userDisplay">demo</span>
+  </div>
+</header>
+
+<main class="submit-page">
+
+  <p class="eyebrow">// NEW ENTRY</p>
+
+  <h1 class="title">
+    Submit your<br>solution.
+  </h1>
+
+  <p class="desc">
+    Add a clear title, the problem description, your code with explanation.
+  </p>
+
+  <!-- FORM -->
+  <form id="submitForm">
+
+    <label>TITLE</label>
+    <input
+      id="title"
+      type="text"
+      placeholder="Two Sum — hashmap O(n)"
+    />
+  
+    <label>PROBLEM DESCRIPTION</label>
+    <textarea
+      id="description"
+      placeholder="Restate the problem clearly..."
+    ></textarea>
+  
+    <div class="row">
+  
+      <div>
+        <label>DIFFICULTY</label>
+  
+        <select id="difficulty">
+          <option>Easy</option>
+          <option selected>Medium</option>
+          <option>Hard</option>
+        </select>
+      </div>
+  
+      <div>
+        <label>TOPIC</label>
+  
+        <select id="topic">
+          <option>Arrays</option>
+          <option>Strings</option>
+          <option selected>Hash Map</option>
+          <option>Graphs</option>
+        </select>
+      </div>
+  
+      <div>
+        <label>LANGUAGE</label>
+  
+        <select id="language">
+          <option selected>Python</option>
+          <option>Java</option>
+          <option>C++</option>
+        </select>
+      </div>
+  
+    </div>
+  
+    <label>SOLUTION CODE</label>
+  
+    <textarea
+      id="solution"
+      class="code"
+    >
+  def solve(nums):
+      return nums
+    </textarea>
+  
+    <label>EXPLANATION (MARKDOWN SUPPORTED)</label>
+  
+    <textarea
+      id="explanation"
+      placeholder="Walk through your approach..."
+    ></textarea>
+  
+    <div class="row">
+  
+      <div>
+        <label>YOUTUBE REFERENCE</label>
+  
+        <input
+          id="youtube"
+          type="text"
+          placeholder="https://youtube..."
+        />
+      </div>
+  
+      <div>
+        <label>TAGS</label>
+  
+        <input
+          id="tags"
+          type="text"
+          placeholder="hashmap, two-pointer"
+        />
+      </div>
+  
+    </div>
+  
+    <button
+      type="submit"
+      class="publish-btn"
+    >
+      Publish solution
+    </button>
+  
+  </form>
+</main>
+
+
+
+<script src="submit.js"></script>
+</body>
+</html>

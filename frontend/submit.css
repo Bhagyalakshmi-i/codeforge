@@ -1,0 +1,276 @@
+```css id="submitcssupdated"
+/* =========================
+   GLOBAL
+========================= */
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  background:#050505;
+  color:#f5f5f7;
+  font-family:"IBM Plex Sans",sans-serif;
+  overflow-x:hidden;
+}
+
+/* =========================
+   NAVBAR
+========================= */
+
+.navbar{
+  height:74px;
+  padding:0 42px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-bottom:1px solid #171717;
+  background:#050505;
+  position:sticky;
+  top:0;
+  z-index:100;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  text-decoration:none;
+}
+
+.brand-mark{
+  width:38px;
+  height:38px;
+  border-radius:12px;
+  background:#fff;
+  color:#050505;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:18px;
+  font-weight:800;
+}
+
+.brand-name{
+  color:white;
+  font-family:"Cabinet Grotesk",sans-serif;
+  font-size:26px;
+  font-weight:800;
+  letter-spacing:-0.5px;
+}
+
+.nav{
+  display:flex;
+  gap:34px;
+}
+
+.nav a{
+  color:#8f8f9c;
+  text-decoration:none;
+  font-size:15px;
+  transition:.2s;
+}
+
+.nav a:hover{
+  color:#f4b400;
+}
+
+.nav-right{
+  color:#f4b400;
+  font-weight:700;
+  font-size:15px;
+}
+
+/* =========================
+   PAGE
+========================= */
+
+.submit-page{
+  width:100%;
+  max-width:1100px;
+  margin:auto;
+  padding:70px 30px 120px;
+}
+
+.eyebrow{
+  color:#6f6f79;
+  letter-spacing:3px;
+  font-size:12px;
+  margin-bottom:16px;
+  font-weight:600;
+}
+
+.title{
+  font-family:"Cabinet Grotesk",sans-serif;
+  font-size:86px;
+  line-height:0.95;
+  letter-spacing:-3px;
+  margin-bottom:24px;
+}
+
+.desc{
+  color:#8c8c98;
+  font-size:18px;
+  line-height:1.7;
+  max-width:650px;
+  margin-bottom:52px;
+}
+
+/* =========================
+   FORM
+========================= */
+
+form{
+  width:100%;
+}
+
+label{
+  display:block;
+  margin-bottom:10px;
+  margin-top:28px;
+  color:#7d7d88;
+  font-size:12px;
+  letter-spacing:2px;
+  font-weight:700;
+}
+
+input,
+textarea,
+select{
+  width:100%;
+  background:#0b0b10;
+  border:1px solid #1d1d28;
+  border-radius:18px;
+  padding:18px 20px;
+  color:white;
+  font-size:15px;
+  outline:none;
+  transition:.25s;
+}
+
+input::placeholder,
+textarea::placeholder{
+  color:#5d5d68;
+}
+
+input:focus,
+textarea:focus,
+select:focus{
+  border-color:#f4b400;
+  box-shadow:0 0 0 4px rgba(244,180,0,.08);
+}
+
+textarea{
+  min-height:140px;
+  resize:vertical;
+}
+
+.code{
+  min-height:260px;
+  font-family:monospace;
+  line-height:1.7;
+  font-size:14px;
+  background:#08080c;
+}
+
+/* =========================
+   ROWS
+========================= */
+
+.row{
+  display:flex;
+  gap:22px;
+}
+
+.row > div{
+  flex:1;
+}
+
+/* =========================
+   BUTTON
+========================= */
+
+.publish-btn{
+  margin-top:42px;
+  background:#fff;
+  color:#050505;
+  border:none;
+  padding:18px 34px;
+  border-radius:999px;
+  font-weight:800;
+  font-size:15px;
+  cursor:pointer;
+  transition:.25s;
+  float:right;
+}
+
+.publish-btn:hover{
+  transform:translateY(-2px);
+  opacity:.95;
+}
+
+/* =========================
+   EMERGENT
+========================= */
+
+.emergent{
+  position:fixed;
+  bottom:20px;
+  right:24px;
+  color:#666;
+  font-size:13px;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:900px){
+
+  .title{
+    font-size:62px;
+  }
+
+  .row{
+    flex-direction:column;
+    gap:0;
+  }
+
+  .submit-page{
+    padding:50px 22px 100px;
+  }
+
+  .navbar{
+    padding:0 20px;
+  }
+
+  .nav{
+    display:none;
+  }
+}
+
+@media(max-width:600px){
+
+  .title{
+    font-size:48px;
+    letter-spacing:-2px;
+  }
+
+  .desc{
+    font-size:16px;
+  }
+
+  input,
+  textarea,
+  select{
+    padding:16px;
+  }
+
+  .publish-btn{
+    width:100%;
+    float:none;
+  }
+}
+```

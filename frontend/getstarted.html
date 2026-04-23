@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Get Started | CodeForge</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@400,500,700,800,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="getstarted.css" />
+</head>
+<body>
+  <header class="navbar">
+    <a href="home.html" class="brand">
+      <div class="brand-mark">⬢</div>
+      <div class="brand-name">codeforge</div>
+    </a>
+
+    <nav class="nav">
+      <a href="browse.html">Browse</a>
+      <a href="submit.html">Submit Solution</a>
+    </nav>
+
+    <div class="nav-right">
+      <a href="index.html" class="signin-link">Sign in</a>
+      <button class="btn-pill btn-white" onclick="window.location.href='getstarted.html'">Get started</button>
+    </div>
+  </header>
+
+  <main class="page">
+    <section class="signup-shell">
+      <div class="signup-copy">
+        <p class="eyebrow">// NEW ACCOUNT</p>
+        <h1>Forge<br>your handle.</h1>
+      </div>
+
+      <form class="signup-card" id="signupForm">
+        <input type="text" id="displayName" placeholder="Display name" autocomplete="name" />
+        <input type="email" id="email" placeholder="you@dev.com" autocomplete="email" />
+        <input type="password" id="password" placeholder="Password (min 6 chars)" autocomplete="new-password" />
+
+        <button type="submit" class="create-btn">
+          <span>Create account</span>
+          <span class="arrow">→</span>
+        </button>
+
+        <p class="signin-text">Already a member? <a href="index.html">Sign in</a></p>
+      </form>
+    </section>
+  </main>
+
+ 
+
+  <script src="getstarted.js"></script>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Browse Problems</title>
+
+  <link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@400,500,700,800,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="home.css">
+  <link rel="stylesheet" href="browse.css">
+</head>
+<body>
+
+  <header class="navbar">
+    <a href="home.html" class="brand">
+      <div class="brand-mark">⬢</div>
+      <div class="brand-name">codeforge</div>
+    </a>
+
+    <nav class="nav">
+      <a href="browse.html">Browse</a>
+      <a href="submit.html">Submit Solution</a>
+    </nav>
+
+    <div class="nav-right">
+      <a href="index.html" class="signin-link">Sign in</a>
+      <a class="cta" href="getstarted.html">Get started</a>
+    </div>
+  </header>
+
+  <main class="browse-page">
+    <aside class="browse-sidebar">
+      <section class="sidebar-card">
+        <p class="sidebar-title">DIFFICULTY</p>
+        <div class="sidebar-list" id="difficultyList"></div>
+      </section>
+
+      <section class="sidebar-card">
+        <p class="sidebar-title">TOPIC</p>
+        <div class="sidebar-list topic-list" id="topicList"></div>
+      </section>
+
+      <section class="sidebar-card profile-card">
+        <div class="profile-head">
+          <div class="profile-avatar">DE</div>
+          <div>
+            <div class="profile-name">demo</div>
+            <div class="profile-rank">★ Beginner</div>
+          </div>
+        </div>
+
+        <div class="profile-stats">
+          <div class="stat-box">
+            <div class="stat-num" id="solvedCount">0</div>
+            <div class="stat-label">Solved</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num" id="streakCount">0</div>
+            <div class="stat-label">Streak</div>
+          </div>
+        </div>
+
+        <p class="profile-note">New to CodeNest!</p>
+        <button class="upload-btn" type="button">+ Upload Problem</button>
+        <button
+  class="logout-btn"
+  onclick="logout()"
+>
+  Logout
+</button>
+      </section>
+    </aside>
+
+    <section class="browse-main">
+      <div class="browse-top">
+        <div>
+          <p class="eyebrow">// ARCHIVE</p>
+          <h1 class="browse-title">Browse problems.</h1>
+          <p class="browse-desc">Filter by difficulty, topic and search by title or tags.</p>
+        </div>
+
+        <div class="search-box">
+          <input id="searchInput" type="text" placeholder="Search title, description, tags..." />
+        </div>
+      </div>
+
+      <div class="browse-toolbar">
+        <div class="toolbar-group">
+          <span class="toolbar-label">SORT</span>
+          <div class="toolbar-pills">
+            <button class="pill active" id="sortRecent">Recent</button>
+            <button class="pill" id="sortPopular">Popular</button>
+          </div>
+        </div>
+
+        <div class="toolbar-group">
+          <span class="toolbar-label">FILTER</span>
+          <div class="toolbar-meta" id="resultMeta">0 problems</div>
+        </div>
+      </div>
+
+      <div class="browse-feed" id="browseFeed"></div>
+    </section>
+  </main>
+
+  <script src="browse.js"></script>
+</body>
+</html>

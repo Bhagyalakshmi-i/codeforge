@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Two Sum | CodeForge</title>
+
+  <link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@400,500,700,800,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="two-sum.css" />
+</head>
+<body>
+
+  <header class="navbar">
+    <a href="browse.html" class="back-btn">← Back to Feed</a>
+
+    <div class="center-tags">
+      <span class="tag trending">🔥 TRENDING</span>
+      <span class="tag easy">EASY</span>
+      <span class="tag topic">Hashing</span>
+    </div>
+
+    <div class="right-meta">
+      <div class="mini-box">📝</div>
+      <div class="like-box">❤ 1284</div>
+    </div>
+  </header>
+
+  <main class="page">
+    <section class="hero">
+      <h1>Two Sum</h1>
+
+      <p class="desc">
+        Given an array of integers nums and a target, return indices of the two numbers
+        such that they add up to target. Each input has exactly one solution.
+      </p>
+
+      <div class="meta">
+        <div>⏱ Time <b>O(n)</b></div>
+        <div>💾 Space <b>O(n)</b></div>
+        <div>👁 9,310</div>
+        <div>💡 23</div>
+      </div>
+
+      <div class="author-row">
+        <div class="avatar">AD</div>
+        <div class="author-info">
+          <div class="author-name">aria_dev</div>
+          <div class="author-age">2 days ago</div>
+        </div>
+      </div>
+    </section>
+
+    <nav class="tabs">
+      <span class="active" onclick="switchTab('solution', this)">Solution</span>
+      <span onclick="switchTab('explanation', this)">Explanation</span>
+      <span onclick="switchTab('alternatives', this)">Alternatives (3)</span>
+      <span onclick="switchTab('discuss', this)">Discuss</span>
+    </nav>
+
+    <section class="content">
+      <!-- SOLUTION -->
+      <div id="solution" class="tab active">
+        <div class="solution-pills">
+          <span class="pill featured">FEATURED</span>
+          <span class="pill">HashMap</span>
+          <span class="pill">O(n)</span>
+          <span class="pill">Classic</span>
+        </div>
+
+        <div class="code-card">
+          <button class="copy-btn" onclick="copyCode('solutionCode', this)">Copy</button>
+          <div class="code-header">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+          </div>
+          <pre id="solutionCode"><code>def two_sum(nums, target):
+    seen = {}
+
+    for i, n in enumerate(nums):
+        diff = target - n
+        if diff in seen:
+            return [seen[diff], i]
+        seen[n] = i</code></pre>
+        </div>
+
+        <div class="key-insight">
+          <p class="section-title">// KEY INSIGHT</p>
+          <p>
+            Use a hash map to store each number and its index. For every element,
+            check whether the complement (target - current) already exists.
+            Single pass → O(n) time.
+          </p>
+        </div>
+      </div>
+
+      <!-- EXPLANATION -->
+      <div id="explanation" class="tab">
+        <div class="card">
+          <h3>// FULL APPROACH</h3>
+          <p>
+            Store each number in a hash map as you scan the array.
+            For every element, compute its complement and check whether it has already appeared.
+            Once you find the complement, return the stored index and the current index.
+          </p>
+        </div>
+
+        <div class="grid">
+          <div class="card">
+            <h4>Time Complexity</h4>
+            <p>O(n)</p>
+          </div>
+
+          <div class="card">
+            <h4>Space Complexity</h4>
+            <p>O(n)</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ALTERNATIVES -->
+      <div id="alternatives" class="tab">
+        <div class="alt-card">
+          <div class="alt-head">
+            <div class="alt-author">
+              <div class="alt-avatar">AD</div>
+              <div>
+                <div class="alt-name">aria_dev</div>
+                <div class="alt-sub">Featured • HashMap</div>
+              </div>
+            </div>
+            <div class="alt-like">❤️ 1284</div>
+          </div>
+
+          <div class="code-shell">
+            <div class="code-shell-top">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+              <button class="copy-btn" onclick="copyCode('altCode1', this)">Copy</button>
+            </div>
+            <pre id="altCode1"><code>def two_sum(nums, target):
+    seen = {}
+
+    for i, n in enumerate(nums):
+        diff = target - n
+        if diff in seen:
+            return [seen[diff], i]
+        seen[n] = i</code></pre>
+          </div>
+        </div>
+
+        <div class="alt-card">
+          <div class="alt-head">
+            <div class="alt-author">
+              <div class="alt-avatar alt-avatar-yellow">PM</div>
+              <div>
+                <div class="alt-name">ptr_master</div>
+                <div class="alt-sub alt-sub-yellow">Two Pointers (sorted copy)</div>
+              </div>
+            </div>
+            <div class="alt-like">❤️ 342</div>
+          </div>
+
+          <div class="code-shell">
+            <div class="code-shell-top">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+              <button class="copy-btn" onclick="copyCode('altCode2', this)">Copy</button>
+            </div>
+            <pre id="altCode2"><code>def two_sum(nums, target):
+    sorted_nums = sorted(enumerate(nums), key=lambda x: x[1])
+    l, r = 0, len(sorted_nums) - 1
+
+    while l < r:
+        s = sorted_nums[l][1] + sorted_nums[r][1]
+        if s == target:
+            return [sorted_nums[l][0], sorted_nums[r][0]]
+        elif s < target:
+            l += 1
+        else:
+            r -= 1</code></pre>
+          </div>
+        </div>
+
+        <div class="alt-card">
+          <div class="alt-head">
+            <div class="alt-author">
+              <div class="alt-avatar alt-avatar-pink">BF</div>
+              <div>
+                <div class="alt-name">brute_fan</div>
+                <div class="alt-sub alt-sub-pink">Brute Force O(n²)</div>
+              </div>
+            </div>
+            <div class="alt-like">❤️ 89</div>
+          </div>
+
+          <div class="code-shell">
+            <div class="code-shell-top">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+              <button class="copy-btn" onclick="copyCode('altCode3', this)">Copy</button>
+            </div>
+            <pre id="altCode3"><code>def two_sum(nums, target):
+    for i in range(len(nums)):
+        for j in range(i + 1, len(nums)):
+            if nums[i] + nums[j] == target:
+                return [i, j]</code></pre>
+          </div>
+        </div>
+
+        <section class="submit-alt">
+          <p class="submit-title">// SUBMIT YOUR ALTERNATIVE</p>
+          <input type="text" placeholder="Approach name (e.g. Sort & Two Pointers)" />
+          <textarea rows="7" placeholder="Paste your solution code..."></textarea>
+          <button type="button" class="submit-btn">Submit</button>
+        </section>
+      </div>
+
+      <!-- DISCUSS -->
+      <div id="discuss" class="tab">
+        <div class="card center">
+          💬 Discussions coming soon
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="two-sum.js"></script>
+</body>
+</html>

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Binary Search | CodeForge</title>
+  <link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@400,500,700,800,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  
+  <link rel="stylesheet" href="binary-search.css" />
+</head>
+<body>
+
+<!-- 🔝 NAVBAR -->
+<header class="navbar">
+  <div class="logo">codeforge</div>
+  <div class="nav-links">
+    <span>Browse</span>
+    <span>Submit Solution</span>
+  </div>
+  <div class="user">❤ 432</div>
+</header>
+
+<!-- 🔙 BACK -->
+<a href="browse.html" class="back-btn">← Back to Feed</a>
+
+<!-- 🧠 TITLE -->
+<section class="hero">
+  <div class="tags">
+    <span class="easy">EASY</span>
+    <span class="topic">Binary Search</span>
+  </div>
+
+  <h1>Binary Search</h1>
+
+  <p>
+    Given a sorted array and target, return the target's index.
+    Return −1 if not found. Must run in O(log n) time.
+  </p>
+
+  <!-- META -->
+  <div class="meta">
+    <div>⏱ Time <b>O(log n)</b></div>
+    <div>💾 Space <b>O(1)</b></div>
+    <div>👁 3,100</div>
+    <div>💡 12</div>
+  </div>
+</section>
+
+<!-- 🔘 TABS -->
+<div class="tabs">
+    <span class="active" onclick="switchTab('solution', this)">Solution</span>
+    <span onclick="switchTab('explanation', this)">Explanation</span>
+    <span onclick="switchTab('alternatives', this)">Alternatives (2)</span>
+    <span onclick="switchTab('discuss', this)">Discuss</span>
+</div>
+
+<!-- 📦 CONTENT -->
+<section class="content">
+
+  <!-- ✅ SOLUTION -->
+  <div id="solution" class="tab active">
+    <div class="code-card">
+        <button class="copy-btn" onclick="copyCode('code', this)">Copy</button>
+<pre id="code">
+def binary_search(nums, target):
+    l, r = 0, len(nums) - 1
+
+    while l <= r:
+        mid = l + (r - l) // 2
+
+        if nums[mid] == target:
+            return mid
+        elif nums[mid] < target:
+            l = mid + 1
+        else:
+            r = mid - 1
+
+    return -1
+</pre>
+    </div>
+  </div>
+
+  <!-- ✅ EXPLANATION -->
+  <div id="explanation" class="tab">
+    <div class="card">
+      <h3>// FULL APPROACH</h3>
+      <p>
+        Maintain left and right pointers. Check midpoint each step.
+        If target > mid → search right half; else search left half.
+        Halves search space each iteration → O(log n).
+      </p>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <h4>Time Complexity</h4>
+        <p>O(log n)</p>
+      </div>
+
+      <div class="card">
+        <h4>Space Complexity</h4>
+        <p>O(1)</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ✅ ALTERNATIVES -->
+  <div id="alternatives" class="tab">
+    <div class="alt-card">
+      <div class="alt-head">
+        <div class="alt-author">
+          <div class="alt-avatar">AS</div>
+          <div>
+            <div class="alt-name">algo_sage</div>
+            <div class="alt-sub">Featured • Classic</div>
+          </div>
+        </div>
+        <div class="alt-like">❤️ 432</div>
+      </div>
+  
+      <div class="code-shell">
+        <div class="code-shell-top">
+          <span class="dot red"></span>
+          <span class="dot yellow"></span>
+          <span class="dot green"></span>
+          <button class="copy-btn" onclick="copyCode('altCode1', this)">Copy</button>
+        </div>
+        <pre id="altCode1"><code>def binary_search(nums, target):
+      l, r = 0, len(nums) - 1
+  
+      while l <= r:
+          mid = l + (r - l) // 2
+  
+          if nums[mid] == target:
+              return mid
+          elif nums[mid] < target:
+              l = mid + 1
+          else:
+              r = mid - 1
+  
+      return -1</code></pre>
+      </div>
+    </div>
+  
+    <div class="alt-card">
+      <div class="alt-head">
+        <div class="alt-author">
+          <div class="alt-avatar alt-avatar-pink">RH</div>
+          <div>
+            <div class="alt-name">recursion_head</div>
+            <div class="alt-sub alt-sub-pink">Recursive Variant</div>
+          </div>
+        </div>
+        <div class="alt-like">❤️ 201</div>
+      </div>
+  
+      <div class="code-shell">
+        <div class="code-shell-top">
+          <span class="dot red"></span>
+          <span class="dot yellow"></span>
+          <span class="dot green"></span>
+          <button class="copy-btn" onclick="copyCode('altCode2', this)">Copy</button>
+        </div>
+        <pre id="altCode2"><code>def binary_search(nums, target, l=0, r=None):
+      if r is None:
+          r = len(nums) - 1
+  
+      if l > r:
+          return -1
+  
+      mid = l + (r - l) // 2
+  
+      if nums[mid] == target:
+          return mid
+      if nums[mid] < target:
+          return binary_search(nums, target, mid + 1, r)
+      return binary_search(nums, target, l, mid - 1)</code></pre>
+      </div>
+    </div>
+  
+    <section class="submit-alt">
+      <p class="submit-title">// SUBMIT YOUR ALTERNATIVE</p>
+      <input type="text" placeholder="Approach name (e.g. Divide & Conquer)" />
+      <textarea rows="7" placeholder="Paste your solution code..."></textarea>
+      <button type="button" class="submit-btn">Submit</button>
+    </section>
+  </div>
+
+  <!-- ✅ DISCUSS -->
+  <div id="discuss" class="tab">
+    <div class="card center">
+      💬 Discussions coming soon
+    </div>
+  </div>
+
+</section>
+
+<script src="binary-search.js"></script>
+</body>
+</html>

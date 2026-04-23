@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Climbing Stairs | CodeForge</title>
+
+  <link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@400,500,700,800,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="climbing-stairs.css" />
+</head>
+<body>
+
+  <header class="navbar">
+    <a href="browse.html" class="back-btn">← Back to Feed</a>
+
+    <div class="center-tags">
+      <span class="tag easy">EASY</span>
+      <span class="tag topic">Dynamic Programming</span>
+    </div>
+
+    <div class="right-meta">
+      <div class="mini-box">📝</div>
+      <div class="like-box">❤ 654</div>
+    </div>
+  </header>
+
+  <main class="page">
+    <section class="hero">
+      <h1>Climbing Stairs</h1>
+
+      <p class="desc">
+        Climbing a staircase with n steps. You can climb 1 or 2 steps at a time.
+        How many distinct ways can you reach the top?
+      </p>
+
+      <div class="meta">
+        <div>⏱ Time <b>O(n)</b></div>
+        <div>💾 Space <b>O(1)</b></div>
+        <div>👁 4,210</div>
+        <div>💡 18</div>
+      </div>
+
+      <div class="author-row">
+        <div class="avatar">DW</div>
+        <div class="author-info">
+          <div class="author-name">dp_wizard</div>
+          <div class="author-age">3 days ago</div>
+        </div>
+      </div>
+    </section>
+
+    <nav class="tabs">
+      <span class="active" onclick="switchTab('solution', this)">Solution</span>
+      <span onclick="switchTab('explanation', this)">Explanation</span>
+      <span onclick="switchTab('alternatives', this)">Alternatives (1)</span>
+      <span onclick="switchTab('discuss', this)">Discuss</span>
+    </nav>
+
+    <section class="content">
+      <div id="solution" class="tab active">
+        <div class="solution-pills">
+          <span class="pill featured">FEATURED</span>
+          <span class="pill">Fibonacci</span>
+          <span class="pill">Bottom-Up</span>
+          <span class="pill">O(1) space</span>
+        </div>
+
+        <div class="code-card">
+          <button class="copy-btn" onclick="copyCode('solutionCode', this)">Copy</button>
+          <div class="code-header">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+          </div>
+<pre id="solutionCode"><code>def climb_stairs(n):
+    if n <= 2:
+        return n
+
+    a, b = 1, 2
+    for _ in range(3, n + 1):
+        a, b = b, a + b
+
+    return b</code></pre>
+        </div>
+
+        <div class="key-insight">
+          <p class="section-title">// KEY INSIGHT</p>
+          <p>
+            ways(n) = ways(n-1) + ways(n-2), exactly Fibonacci.
+            Use two rolling variables for O(n) time and O(1) space.
+          </p>
+        </div>
+      </div>
+
+      <div id="explanation" class="tab">
+        <div class="card">
+          <h3>// FULL APPROACH</h3>
+          <p>
+            Every step can be reached either from one step below or two steps below.
+            So the total ways to reach step n is the sum of ways(n-1) and ways(n-2).
+            This makes it a Fibonacci-style recurrence.
+          </p>
+        </div>
+
+        <div class="grid">
+          <div class="card">
+            <h4>Time Complexity</h4>
+            <p>O(n)</p>
+          </div>
+
+          <div class="card">
+            <h4>Space Complexity</h4>
+            <p>O(1)</p>
+          </div>
+        </div>
+      </div>
+
+      <div id="alternatives" class="tab">
+        <div class="alt-card">
+          <div class="alt-head">
+            <div class="alt-author">
+              <div class="alt-avatar">DW</div>
+              <div>
+                <div class="alt-name">dp_wizard</div>
+                <div class="alt-sub">Featured • Fibonacci</div>
+              </div>
+            </div>
+            <div class="alt-like">❤️ 654</div>
+          </div>
+
+          <div class="code-shell">
+            <div class="code-shell-top">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+              <button class="copy-btn" onclick="copyCode('altCode1', this)">Copy</button>
+            </div>
+<pre id="altCode1"><code>def climb_stairs(n):
+    if n <= 2:
+        return n
+
+    a, b = 1, 2
+    for _ in range(3, n + 1):
+        a, b = b, a + b
+
+    return b</code></pre>
+          </div>
+        </div>
+
+        <section class="submit-alt">
+          <p class="submit-title">// SUBMIT YOUR ALTERNATIVE</p>
+          <input type="text" placeholder="Approach name (e.g. Memoization)" />
+          <textarea rows="7" placeholder="Paste your solution code..."></textarea>
+          <button type="button" class="submit-btn">Submit</button>
+        </section>
+      </div>
+
+      <div id="discuss" class="tab">
+        <div class="card center">
+          💬 Discussions coming soon
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="climbing-stairs.js"></script>
+</body>
+</html>

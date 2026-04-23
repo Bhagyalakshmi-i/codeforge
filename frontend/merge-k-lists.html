@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Merge Sort | CodeForge</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@400,500,700,800,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="merge-k.css" />
+</head>
+<body>
+
+  <header class="navbar">
+    <a href="browse.html" class="back-btn">← Back to Feed</a>
+
+    <div class="center-tags">
+      <span class="tag easy">MEDIUM</span>
+      <span class="tag topic">Sorting</span>
+    </div>
+
+    <div class="right-meta">
+      <div class="mini-box">📝</div>
+      <div class="like-box">❤ 1120</div>
+    </div>
+  </header>
+
+  <main class="page">
+    <section class="hero">
+      <h1>Merge Sort</h1>
+
+      <p class="desc">
+        Sort an array by dividing it into halves, sorting each half, and merging the results.
+        Stable, divide-and-conquer, and runs in O(n log n) time.
+      </p>
+
+      <div class="meta">
+        <div>⏱ Time <b>O(n log n)</b></div>
+        <div>💾 Space <b>O(n)</b></div>
+        <div>👁 8,700</div>
+        <div>💡 19</div>
+      </div>
+
+      <div class="author-row">
+        <div class="avatar">MS</div>
+        <div class="author-info">
+          <div class="author-name">sort_master</div>
+          <div class="author-age">2 days ago</div>
+        </div>
+      </div>
+    </section>
+
+    <nav class="tabs">
+      <span class="active" onclick="switchTab('solution', this)">Solution</span>
+      <span onclick="switchTab('explanation', this)">Explanation</span>
+      <span onclick="switchTab('alternatives', this)">Alternatives (1)</span>
+      <span onclick="switchTab('discuss', this)">Discuss</span>
+    </nav>
+
+    <section class="content">
+      <div id="solution" class="tab active">
+        <div class="solution-pills">
+          <span class="pill featured">FEATURED</span>
+          <span class="pill">Divide & Conquer</span>
+          <span class="pill">Stable Sort</span>
+          <span class="pill">O(n log n)</span>
+        </div>
+
+        <div class="code-card">
+          <button class="copy-btn" onclick="copyCode('solutionCode', this)">Copy</button>
+          <div class="code-header">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+          </div>
+<pre id="solutionCode"><code>def merge_sort(arr):
+    if len(arr) <= 1:
+        return arr
+
+    mid = len(arr) // 2
+    left = merge_sort(arr[:mid])
+    right = merge_sort(arr[mid:])
+
+    return merge(left, right)
+
+
+def merge(left, right):
+    result = []
+    i = j = 0
+
+    while i < len(left) and j < len(right):
+        if left[i] <= right[j]:
+            result.append(left[i])
+            i += 1
+        else:
+            result.append(right[j])
+            j += 1
+
+    result.extend(left[i:])
+    result.extend(right[j:])
+    return result</code></pre>
+        </div>
+
+        <div class="key-insight">
+          <p class="section-title">// KEY INSIGHT</p>
+          <p>
+            Keep dividing the array into halves until each part has one element.
+            Then merge the sorted halves back together in order.
+          </p>
+        </div>
+      </div>
+
+      <div id="explanation" class="tab">
+        <div class="card">
+          <h3>// FULL APPROACH</h3>
+          <p>
+            Merge sort works by recursively splitting the array into two halves,
+            sorting each half, and merging the sorted halves. The merge step compares
+            the smallest remaining values from both halves and builds the final sorted array.
+          </p>
+        </div>
+
+        <div class="grid">
+          <div class="card">
+            <h4>Time Complexity</h4>
+            <p>O(n log n)</p>
+          </div>
+
+          <div class="card">
+            <h4>Space Complexity</h4>
+            <p>O(n)</p>
+          </div>
+        </div>
+      </div>
+
+      <div id="alternatives" class="tab">
+        <div class="alt-card">
+          <div class="alt-head">
+            <div class="alt-author">
+              <div class="alt-avatar">MS</div>
+              <div>
+                <div class="alt-name">sort_master</div>
+                <div class="alt-sub">Featured • Bottom-Up</div>
+              </div>
+            </div>
+            <div class="alt-like">❤️ 1120</div>
+          </div>
+
+          <div class="code-shell">
+            <div class="code-shell-top">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+              <button class="copy-btn" onclick="copyCode('altCode1', this)">Copy</button>
+            </div>
+<pre id="altCode1"><code>def merge_sort_iterative(arr):
+    n = len(arr)
+    size = 1
+
+    while size < n:
+        for left in range(0, n, 2 * size):
+            mid = min(left + size, n)
+            right = min(left + 2 * size, n)
+            arr[left:right] = merge(arr[left:mid], arr[mid:right])
+        size *= 2
+
+    return arr</code></pre>
+          </div>
+        </div>
+
+        <section class="submit-alt">
+          <p class="submit-title">// SUBMIT YOUR ALTERNATIVE</p>
+          <input type="text" placeholder="Approach name (e.g. Bottom-Up Merge Sort)" />
+          <textarea rows="7" placeholder="Paste your solution code..."></textarea>
+          <button type="button" class="submit-btn">Submit</button>
+        </section>
+      </div>
+
+      <div id="discuss" class="tab">
+        <div class="card center">
+          💬 Discussions coming soon
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="merge-k.js"></script>
+</body>
+</html>

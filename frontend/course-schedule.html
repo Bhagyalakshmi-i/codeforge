@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Course Schedule II | CodeForge</title>
+
+  <link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@400,500,700,800,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="course-schedule.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a href="browse.html" class="back-link">← Back to Feed</a>
+
+    <div class="center-tags">
+      <span class="tag trending">🔥 TRENDING</span>
+      <span class="tag difficulty">HARD</span>
+      <span class="tag topic">Graphs</span>
+    </div>
+
+    <div class="right-meta">
+      <div class="mini-box">🧾</div>
+      <div class="like-box">❤️ 2103</div>
+    </div>
+  </header>
+
+  <main class="page">
+    <section class="hero">
+      <h1>Course Schedule II</h1>
+      <p class="desc">
+        Return the ordering of courses to finish all numCourses. Return an empty array if it is impossible to finish all courses.
+      </p>
+
+      <div class="author-row">
+        <div class="avatar">GG</div>
+        <div class="author-info">
+          <div class="author-name">graph_guru</div>
+          <div class="author-time">1 week ago</div>
+        </div>
+
+        <div class="author-divider"></div>
+
+        <div class="meta">
+          <div>⏱ Time <b>O(V+E)</b></div>
+          <div>💾 Space <b>O(V+E)</b></div>
+          <div>👁 Views <b>14,500</b></div>
+          <div>💡 Solutions <b>31</b></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="tabs" id="tabs">
+      <button class="tab-btn active" data-tab="solution">Solution</button>
+      <button class="tab-btn" data-tab="explanation">Explanation</button>
+      <button class="tab-btn" data-tab="alternatives">Alternatives (2)</button>
+      <button class="tab-btn" data-tab="discuss">Discuss</button>
+    </section>
+
+    <section class="content">
+      <div class="tab-panel active" id="solution">
+        <div class="solution-pills">
+          <span class="pill featured">FEATURED</span>
+          <span class="pill">Topological Sort</span>
+          <span class="pill">BFS</span>
+          <span class="pill">Kahn's</span>
+        </div>
+
+        <div class="code-card">
+          <div class="code-top">
+            <div class="window-dots">
+              <span></span><span></span><span></span>
+            </div>
+            <button class="copy-btn" data-copy="#solutionCode">Copy</button>
+          </div>
+
+          <pre class="code-block" id="solutionCode"><code>from collections import defaultdict, deque
+
+def find_order(numCourses, prerequisites):
+    adj = defaultdict(list)
+    indegree = [0] * numCourses
+
+    for a, b in prerequisites:
+        adj[b].append(a)
+        indegree[a] += 1
+
+    q = deque(i for i in range(numCourses) if indegree[i] == 0)
+    order = []
+
+    while q:
+        node = q.popleft()
+        order.append(node)
+
+        for nb in adj[node]:
+            indegree[nb] -= 1
+            if indegree[nb] == 0:
+                q.append(nb)
+
+    return order if len(order) == numCourses else []</code></pre>
+        </div>
+
+        <div class="key-insight">
+          <h3>// KEY INSIGHT</h3>
+          <p>
+            Kahn’s BFS: build an indegree array. Enqueue zero-indegree nodes.
+            Process each node, reduce neighbors’ indegrees, and enqueue when they hit 0.
+            If all nodes are processed, there is no cycle.
+          </p>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="explanation">
+        <div class="card">
+          <h3>// FULL APPROACH</h3>
+          <p>
+            Build a directed graph from prerequisites. Use Kahn’s algorithm to repeatedly remove nodes with indegree 0.
+            The resulting order is a valid course schedule. If some nodes never reach indegree 0, a cycle exists and no valid order is possible.
+          </p>
+        </div>
+
+        <div class="grid">
+          <div class="card">
+            <h4>Time Complexity</h4>
+            <p>O(V + E)</p>
+          </div>
+          <div class="card">
+            <h4>Space Complexity</h4>
+            <p>O(V + E)</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="alternatives">
+        <div class="alt-card">
+          <div class="alt-head">
+            <div class="avatar alt-avatar">DP</div>
+            <div>
+              <div class="alt-name">dfs_purist</div>
+              <div class="alt-sub">DFS with 3-color state</div>
+            </div>
+            <div class="alt-love">❤️ 748</div>
+          </div>
+
+          <div class="code-card mini">
+            <div class="code-top">
+              <div class="window-dots">
+                <span></span><span></span><span></span>
+              </div>
+              <button class="copy-btn" data-copy="#altCode1">Copy</button>
+            </div>
+            <pre class="code-block" id="altCode1"><code>from collections import defaultdict
+
+def find_order(numCourses, prerequisites):
+    adj = defaultdict(list)
+    for a, b in prerequisites:
+        adj[b].append(a)
+
+    WHITE, GRAY, BLACK = 0, 1, 2
+    state = [WHITE] * numCourses
+    order = []
+
+    def dfs(u):
+        if state[u] == GRAY:
+            return False
+        if state[u] == BLACK:
+            return True
+
+        state[u] = GRAY
+        for v in adj[u]:
+            if not dfs(v):
+                return False
+        state[u] = BLACK
+        order.append(u)
+        return True
+
+    for i in range(numCourses):
+        if state[i] == WHITE and not dfs(i):
+            return []
+
+    return order[::-1]</code></pre>
+          </div>
+        </div>
+
+        <div class="alt-card">
+          <div class="alt-head">
+            <div class="avatar alt-avatar">TS</div>
+            <div>
+              <div class="alt-name">topo_queue</div>
+              <div class="alt-sub">Queue-based Topological Sort</div>
+            </div>
+            <div class="alt-love">❤️ 512</div>
+          </div>
+
+          <div class="code-card mini">
+            <div class="code-top">
+              <div class="window-dots">
+                <span></span><span></span><span></span>
+              </div>
+              <button class="copy-btn" data-copy="#altCode2">Copy</button>
+            </div>
+            <pre class="code-block" id="altCode2"><code>from collections import defaultdict, deque
+
+def find_order(numCourses, prerequisites):
+    graph = defaultdict(list)
+    indeg = [0] * numCourses
+
+    for a, b in prerequisites:
+        graph[b].append(a)
+        indeg[a] += 1
+
+    q = deque([i for i in range(numCourses) if indeg[i] == 0])
+    ans = []
+
+    while q:
+        u = q.popleft()
+        ans.append(u)
+        for v in graph[u]:
+            indeg[v] -= 1
+            if indeg[v] == 0:
+                q.append(v)
+
+    return ans if len(ans) == numCourses else []</code></pre>
+          </div>
+        </div>
+
+        <div class="submit-alt">
+          <h3>// SUBMIT YOUR ALTERNATIVE</h3>
+          <input type="text" placeholder="Approach name (e.g. DFS Cycle Detection)" />
+          <textarea rows="8" placeholder="Paste your solution code..."></textarea>
+          <button type="button" class="submit-btn">Submit</button>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="discuss">
+        <div class="discuss-card">
+          <div class="bubble">💬</div>
+          <h3>Discussions coming soon</h3>
+          <p>Threaded comments & reactions are in development.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="course-schedule.js"></script>
+</body>
+</html>
