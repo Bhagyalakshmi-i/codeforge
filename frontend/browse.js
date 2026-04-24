@@ -90,9 +90,7 @@ async function fetchProblems() {
 
   try {
 
-    const response = await fetch(
-      "http://127.0.0.1:8000/api/problems"
-    );
+    const response = await fetch("https://codeforge-backend.onrender.com/api/problems");
 
     const backendProblems =
       await response.json();
