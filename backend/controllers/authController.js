@@ -39,16 +39,14 @@ exports.signup = async (req, res) => {
       user
     });
 
-  } catch (error) {
-
+  } 
+  catch (error) {
+    console.error("SIGNUP ERROR:", error);
     res.status(500).json({
-      message: "Server error"
+      message: error.message
     });
-
   }
-
-};
-
+}
 
 // ======================
 // LOGIN
@@ -88,12 +86,11 @@ exports.login = async (req, res) => {
       user
     });
 
-  } catch (error) {
-
-    res.status(500).json({
-      message: "Server error"
-    });
-
   }
-
-};
+  catch (error) {
+    console.error("LOGIN ERROR:", error);
+    res.status(500).json({
+      message: error.message
+    });
+  }
+}
