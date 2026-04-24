@@ -1,4 +1,9 @@
 const form = document.getElementById("submitForm");
+const API_BASE =
+  window.location.hostname === "localhost"
+    ? "http://localhost:8000"
+    : "https://codeforge-backend-1zsy.onrender.com";
+
 console.log("submit.js loaded");
 form.addEventListener("submit", async (e) => {
 
@@ -33,7 +38,7 @@ form.addEventListener("submit", async (e) => {
 
   try {
 
-    const response = await fetch("https://codeforge-backend.onrender.com/api/problems", {
+    const response = await fetch(`${API_BASE}/api/problems`, {
         method: "POST",
 
         headers: {

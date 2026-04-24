@@ -4,7 +4,19 @@ const cors = require("cors");
 require("dotenv").config();
 
 const app = express();
-console.log("CORRECT SERVER RUNNING");
+const PORT = process.env.PORT || 8000;
+const MONGO_URI = process.env.MONGO_URI;
+const JWT_SECRET = process.env.JWT_SECRET;
+
+if (!JWT_SECRET) {
+  console.error("Missing required env var: JWT_SECRET");
+  process.exit(1);
+}
+
+if (!MONGO_URI) {
+  console.error("Missing required env var: MONGO_URI");
+  process.exit(1);
+}
 
 // Layer 1: Manual headers (catches everything)
 app.use((req, res, next) => {
@@ -28,12 +40,25 @@ const problemRoutes = require("./routes/problems");
 app.use("/api/auth", authRoutes);
 app.use("/api/problems", problemRoutes);
 
-mongoose.connect(process.env.MONGO_URI)
-  .then(() => console.log("MongoDB Connected"))
-  .catch((err) => console.log("MongoDB Error:", err));
-
 app.get("/", (req, res) => res.send("CodeForge Backend Running"));
 
-app.listen(8000, () => {
-    console.log("Server running on port 8000");
+async function startServer() {
+  app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
   });
+
+  const connectWithRetry = async () => {
+    try {
+      await mongoose.connect(MONGO_URI);
+      console.log("MongoDB Connected");
+    } catch (err) {
+      console.error("MongoDB Error:", err);
+      console.log("Retrying MongoDB connection in 10 seconds...");
+      setTimeout(connectWithRetry, 10000);
+    }
+  };
+
+  connectWithRetry();
+}
+
+startServer();

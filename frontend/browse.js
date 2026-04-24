@@ -54,6 +54,11 @@ let problems = [
   }
 ];
 
+const API_BASE =
+  window.location.hostname === "localhost"
+    ? "http://localhost:8000"
+    : "https://codeforge-backend-1zsy.onrender.com";
+
 const difficultyItems = [
   "All",
   "Easy",
@@ -90,7 +95,7 @@ async function fetchProblems() {
 
   try {
 
-    const response = await fetch("https://codeforge-backend.onrender.com/api/problems");
+    const response = await fetch(`${API_BASE}/api/problems`);
 
     const backendProblems =
       await response.json();

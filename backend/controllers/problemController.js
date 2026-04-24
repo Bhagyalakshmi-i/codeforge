@@ -1,10 +1,17 @@
 const Problem = require("../models/Problem");
+const mongoose = require("mongoose");
 
 
 // ===================================
 // GET ALL PROBLEMS
 // ===================================
 exports.getProblems = async (req, res) => {
+
+  if (mongoose.connection.readyState !== 1) {
+    return res.status(503).json({
+      message: "Database unavailable. Please try again shortly."
+    });
+  }
 
   try {
 
@@ -27,6 +34,12 @@ exports.getProblems = async (req, res) => {
 // CREATE NEW PROBLEM
 // ===================================
 exports.createProblem = async (req, res) => {
+
+  if (mongoose.connection.readyState !== 1) {
+    return res.status(503).json({
+      message: "Database unavailable. Please try again shortly."
+    });
+  }
 
   try {
 

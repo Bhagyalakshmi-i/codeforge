@@ -1,4 +1,8 @@
 const form = document.getElementById("signupForm");
+const API_BASE =
+  window.location.hostname === "localhost"
+    ? "http://localhost:8000"
+    : "https://codeforge-backend-1zsy.onrender.com";
 
 form.addEventListener("submit", async (e) => {
 
@@ -26,7 +30,7 @@ form.addEventListener("submit", async (e) => {
 
   try {
 
-    const response = await fetch ( "https://codeforge-backend-1zsy.onrender.com/api/auth/signup" , 
+    const response = await fetch(`${API_BASE}/api/auth/signup`, 
       {
         method: "POST",
 

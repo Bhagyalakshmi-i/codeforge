@@ -3,6 +3,7 @@ const router = express.Router();
 
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const mongoose = require("mongoose");
 
 const User = require("../models/User");
 
@@ -12,9 +13,21 @@ const User = require("../models/User");
 // ========================
 router.post("/signup", async (req, res) => {
 
+  if (mongoose.connection.readyState !== 1) {
+    return res.status(503).json({
+      message: "Database unavailable. Please try again shortly."
+    });
+  }
+
   try {
 
     const { username, email, password } = req.body;
+
+    if (!username || !email || !password) {
+      return res.status(400).json({
+        message: "username, email and password are required"
+      });
+    }
 
     const existingUser = await User.findOne({ email });
 
@@ -44,6 +57,8 @@ router.post("/signup", async (req, res) => {
 
   } catch (error) {
 
+    console.error("Signup error:", error);
+
     res.status(500).json({
       message: "Server error"
     });
@@ -57,6 +72,12 @@ router.post("/signup", async (req, res) => {
 // LOGIN
 // ========================
 router.post("/login", async (req, res) => {
+
+  if (mongoose.connection.readyState !== 1) {
+    return res.status(503).json({
+      message: "Database unavailable. Please try again shortly."
+    });
+  }
 
   try {
 
@@ -92,6 +113,8 @@ router.post("/login", async (req, res) => {
     });
 
   } catch (error) {
+
+    console.error("Login error:", error);
 
     res.status(500).json({
       message: "Server error"
