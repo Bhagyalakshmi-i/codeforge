@@ -18,7 +18,7 @@ form.addEventListener("submit", async (e) => {
 
   try {
 
-    const response = await fetch("https://codeforge-backend.onrender.com/api/problems",
+    const response = await fetch("https://codeforge-backend.onrender.com/api/auth/login", 
       {
         method: "POST",
 
